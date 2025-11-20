@@ -1,26 +1,34 @@
-## Client Options
-Get client specific options.   Details unknown.
+## Set Account Nofification Flags
 
-`GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
+`POST /api/v1/accounts/{AccountID}/notifications/configuration`
 
 ### Headers
 See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
+- **Content-Type** - `application/json` - Required for request body
 
 ### Authentication
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
+### Request Body
+- **notification object** - see example request
+
 ### Response
-Client-specific options object. The specific meaning of the options field is unknown.
+A success message object. See example.
 
 ### Example Request
 
 **Simple example:**
 ```sh
 # First refresh your token (see Authentication Guide)
-curl --request GET \
-  --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/clients/{ClientID}/options" \
+curl --request POST \
+  --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/notifications/configuration" \
   --header "Authorization: Bearer $NEW_TOKEN" \
-  --header "Content-Type: application/json"
+  --header "Content-Type: application/json" \
+  --data '{
+  "notifications": {
+    "low_battery": false
+  }
+}'
 ```
 
 **Complete working example using .env file:**
@@ -38,11 +46,15 @@ TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth
   --data-urlencode "client_id=${CLIENT_ID:-android}" \
   --data-urlencode "scope=client") && \
 NEW_TOKEN=$(echo "$TOKEN_RESPONSE" | grep -o '"access_token":"[^"]*' | cut -d'"' -f4) && \
-CLIENT_ID_TO_USE=${CLIENT_ID} && \
-curl --request GET \
-  --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/clients/${CLIENT_ID_TO_USE}/options" \
+curl --request POST \
+  --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/notifications/configuration" \
   --header "Authorization: Bearer $NEW_TOKEN" \
-  --header "Content-Type: application/json"
+  --header "Content-Type: application/json" \
+  --data '{
+  "notifications": {
+    "low_battery": false
+  }
+}'
 ```
 
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
@@ -53,8 +65,6 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 
 ```javascript
 {
-  "options": "{}"
+  "message": "Client Notification Configure Update Successful"
 }
 ```
-
-**Note:** The options field may contain a JSON string or an empty object string. The specific meaning and format of the options field is unknown and may vary.

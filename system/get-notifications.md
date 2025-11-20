@@ -1,7 +1,6 @@
-## Client Options
-Get client specific options.   Details unknown.
+## Get Account Nofification Flags
 
-`GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
+`GET /api/v1/accounts/{AccountID}/notifications/configuration`
 
 ### Headers
 See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
@@ -10,7 +9,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-Client-specific options object. The specific meaning of the options field is unknown.
+Flag status for various notifications. See example.
 
 ### Example Request
 
@@ -18,7 +17,7 @@ Client-specific options object. The specific meaning of the options field is unk
 ```sh
 # First refresh your token (see Authentication Guide)
 curl --request GET \
-  --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/clients/{ClientID}/options" \
+  --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/notifications/configuration" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json"
 ```
@@ -38,9 +37,8 @@ TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth
   --data-urlencode "client_id=${CLIENT_ID:-android}" \
   --data-urlencode "scope=client") && \
 NEW_TOKEN=$(echo "$TOKEN_RESPONSE" | grep -o '"access_token":"[^"]*' | cut -d'"' -f4) && \
-CLIENT_ID_TO_USE=${CLIENT_ID} && \
 curl --request GET \
-  --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/clients/${CLIENT_ID_TO_USE}/options" \
+  --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/notifications/configuration" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json"
 ```
@@ -53,8 +51,27 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 
 ```javascript
 {
-  "options": "{}"
+  "notifications": {
+    "low_battery": true,
+    "camera_offline": true,
+    "camera_usage": true,
+    "scheduling": true,
+    "motion": true,
+    "sync_module_offline": true,
+    "temperature": true,
+    "doorbell": true,
+    "wifi": true,
+    "lfr": true,
+    "bandwidth": true,
+    "battery_dead": true,
+    "local_storage": true,
+    "accessory_connected": true,
+    "accessory_disconnected": true,
+    "accessory_low_battery": true,
+    "general": true,
+    "cv_motion": true
+  }
 }
 ```
 
-**Note:** The options field may contain a JSON string or an empty object string. The specific meaning and format of the options field is unknown and may vary.
+**Note:** The response includes various notification flags. The exact fields may vary based on account type and available features.

@@ -62,10 +62,10 @@ PR's welcome!
 ### System
 
 * [HomeScreen](system/homescreen.md) : `GET /api/v3/accounts/{AccountID}/homescreen`
-* [Get Account Notification Flags](system/getNotifications.md) : `GET /api/v1/accounts/{AccountID}/notifications/configuration`
-* [Set Notification Flags](system/setNotifications.md) : `POST /api/v1/accounts/{AccountID}/notifications/configuration`
+* [Get Account Notification Flags](system/get-notifications.md) : `GET /api/v1/accounts/{AccountID}/notifications/configuration`
+* [Set Notification Flags](system/set-notifications.md) : `POST /api/v1/accounts/{AccountID}/notifications/configuration`
 * [Get Client Options](system/options.md) : `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
-* [Set Client Options](system/updateoptions.md) : `POST /api/v1/accounts/{AccountID}/clients/{ClientID}/update`
+* [Set Client Options](system/update-options.md) : `POST /client/{ClientID}/update`
 
 
 ### Network

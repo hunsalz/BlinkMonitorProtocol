@@ -4,19 +4,47 @@ Retrieve Client "home screen" data.  Returns detailed information about the Acco
 `GET /api/v3/accounts/{AccountID}/homescreen`
 
 ### Headers
-- **TOKEN_AUTH** -  session auth token
+See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 
+### Authentication
+This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-See example
-
+A comprehensive homescreen object containing account, network, sync module, camera, and device information. See example.
 
 ### Example Request
+
+**Simple example:**
 ```sh
+# First refresh your token (see Authentication Guide)
 curl --request GET \
-  --url https://rest-prod.immedia-semi.com/api/v3/accounts/1234/homescreen \
-  --header 'TOKEN_AUTH: {AuthToken}'
+  --url "https://rest-{region}.immedia-semi.com/api/v3/accounts/{AccountID}/homescreen" \
+  --header "Authorization: Bearer $NEW_TOKEN" \
+  --header "Content-Type: application/json"
 ```
+
+**Complete working example using .env file:**
+```sh
+source .env && \
+REFRESH_TOKEN=$(echo "$BLINK_TOKENS" | sed -n "s/.*refresh_token=\([^|]*\).*/\1/p") && \
+CLIENT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*client_id=\([^|]*\).*/\1/p") && \
+HOST=$(echo "$BLINK_TOKENS" | sed -n "s/.*host=\([^|]*\).*/\1/p") && \
+ACCOUNT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*account_id=\([^|]*\).*/\1/p") && \
+TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth/token" \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --header "User-Agent: Blinkpy" \
+  --data-urlencode "grant_type=refresh_token" \
+  --data-urlencode "refresh_token=$REFRESH_TOKEN" \
+  --data-urlencode "client_id=${CLIENT_ID:-android}" \
+  --data-urlencode "scope=client") && \
+NEW_TOKEN=$(echo "$TOKEN_RESPONSE" | grep -o '"access_token":"[^"]*' | cut -d'"' -f4) && \
+curl --request GET \
+  --url "https://rest-${HOST}/api/v3/accounts/${ACCOUNT_ID}/homescreen" \
+  --header "Authorization: Bearer $NEW_TOKEN" \
+  --header "Content-Type: application/json"
+```
+
+See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
 
 
 ### Example Response
