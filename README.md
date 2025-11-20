@@ -73,10 +73,10 @@ PR's welcome!
 * [Command Status](network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
 * [Arm System](network/arm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm`
 * [Disarm System](network/disarm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/disarm`
-* [List Schedules](network/listPrograms.md) : `GET /api/v1/networks/{NetworkID}/programs`
-* [Enable Schedule](network/enableProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
-* [Disable Schedule](network/disableProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/disable`
-* [Update Schedule](network/updateProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/update`
+* [List Schedules](network/list-programs.md) : `GET /api/v1/networks/{NetworkID}/programs`
+* [Enable Schedule](network/enable-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
+* [Disable Schedule](network/disable-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/disable`
+* [Update Schedule](network/update-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/update`
 * ~~List Networks (obsolete): `GET /networks`~~
 * ~~List Synch Modules (obsolete) `GET /network/{NetworkID}/syncmodules`~~
 

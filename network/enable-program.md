@@ -1,11 +1,8 @@
-## Arm the System
+## Enable Schedule
 
-Arm the given network - that is, start recording/reporting motion events for enabled cameras.
+Enable an existing schedule (programs) defined for the given Network/Blink Module
 
-When this call returns, it does not mean the arm request is complete,  the client must gather the command ID from the response and poll for the status of the command.
- 
-
-`POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm`
+`POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
 
 ### Headers
 See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
@@ -14,10 +11,9 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-- A command object or error response. See example. This call is asynchronous and is monitored by the [Command Status](command.md) API call using the returned Command Id.
+A success message object. See example.
 
-**Error Responses:**
-- `{"message":"No Cameras Enabled for Motion","code":304}` - At least one camera must have motion detection enabled before the system can be armed. Use [Enable Motion Detection](../camera/enable.md) first.
+**Note:** This example automatically fetches the first available program ID from your network. If no programs exist, it will skip the request with a warning message.
 
 ### Example Request
 
@@ -25,7 +21,7 @@ This endpoint requires OAuth 2.0 Bearer token authentication. See [Authenticatio
 ```sh
 # First refresh your token (see Authentication Guide)
 curl --request POST \
-  --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm" \
+  --url "https://rest-{region}.immedia-semi.com/api/v1/networks/{NetworkID}/programs/{ProgramID}/enable" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json"
 ```
@@ -50,51 +46,32 @@ HOMESCREEN=$(curl -s --request GET \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json") && \
 NETWORK_ID=$(echo "$HOMESCREEN" | grep -o '"networks":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
-curl --request POST \
-  --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/networks/${NETWORK_ID}/state/arm" \
+PROGRAMS=$(curl -s --request GET \
+  --url "https://rest-${HOST}/api/v1/networks/${NETWORK_ID}/programs" \
   --header "Authorization: Bearer $NEW_TOKEN" \
-  --header "Content-Type: application/json"
+  --header "Content-Type: application/json") && \
+PROGRAM_ID=$(echo "$PROGRAMS" | grep -o '"id":[0-9]*' | head -1 | grep -o '[0-9]*$') && \
+if [ -z "$PROGRAM_ID" ]; then \
+  echo "Warning: No programs found. Your network has no schedules configured."; \
+  echo "This endpoint requires at least one program to be created first."; \
+  echo "Skipping program enable request."; \
+else \
+  curl --request POST \
+    --url "https://rest-${HOST}/api/v1/networks/${NETWORK_ID}/programs/${PROGRAM_ID}/enable" \
+    --header "Authorization: Bearer $NEW_TOKEN" \
+    --header "Content-Type: application/json"; \
+fi
 ```
 
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
 
-### Example Response
 
-**Success Response:**
+### Example Response
 `200 OK`
 
 ```javascript
 {
-  "id": 123456789,
-  "network_id": 1234,
-  "command": "arm",
-  "state": "new",
-  "commands": [
-    {
-      "id": 123456780,
-      "network_id": 1234,
-      "command": "config_lfr",
-      "state": "running"
-    },
-    {
-      "id": 123456781,
-      "network_id": 1234,
-      "command": "config_lfr",
-      "state": "running"
-    }
-  ]
+  "message": "Successfully enabled program 700",
+  "code": 802
 }
 ```
-
-**Error Response:**
-`200 OK` (with error in body)
-
-```javascript
-{
-  "message": "No Cameras Enabled for Motion",
-  "code": 304
-}
-```
-
-
-
