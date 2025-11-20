@@ -2,6 +2,8 @@
 
 Snooze (temporarily disable) motion-activated notifications for a camera.
 
+**Note:** Motion capture must be enabled for the camera before it can be snoozed. If you receive error code 2805 ("Motion capture not enabled for device"), enable motion detection first using the [Enable Motion Detection](enable.md) endpoint.
+
 `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze`
 
 ### Headers
@@ -15,7 +17,10 @@ This endpoint requires OAuth 2.0 Bearer token authentication. See [Authenticatio
 - **snooze_time** - number of minutes, i.e. 240
 
 ### Response
-Unknown
+A command object or error response. See example.
+
+**Error Responses:**
+- `{"message":"Motion capture not enabled for device","code":2805}` - Motion detection must be enabled before snoozing. Use [Enable Motion Detection](enable.md) first.
 
 ### Example Request
 
@@ -60,3 +65,25 @@ curl --request POST \
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
 
 ### Example Response
+
+**Success Response:**
+`200 OK`
+
+```javascript
+{
+  "id": 123456789,
+  "network_id": 158164,
+  "command": "snooze",
+  "state": "new"
+}
+```
+
+**Error Response:**
+`400 Bad Request`
+
+```javascript
+{
+  "message": "Motion capture not enabled for device",
+  "code": 2805
+}
+```

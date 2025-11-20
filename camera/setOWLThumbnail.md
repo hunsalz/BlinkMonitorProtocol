@@ -50,14 +50,15 @@ HOMESCREEN=$(curl -s --request GET \
 NETWORK_ID=$(echo "$HOMESCREEN" | grep -o '"networks":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
 CAMERA_ID=$(echo "$HOMESCREEN" | grep -o '"owls":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
 if [ -z "$CAMERA_ID" ]; then \
-  echo "Error: No OWL cameras found. Your homescreen shows: $(echo "$HOMESCREEN" | grep -o '"owls":\[.*\]' | head -c 100)"; \
+  echo "Warning: No OWL cameras found. Your homescreen shows: $(echo "$HOMESCREEN" | grep -o '"owls":\[.*\]' | head -c 100)"; \
   echo "This endpoint requires at least one OWL camera to be configured in your account."; \
-  exit 1; \
-fi && \
-curl --request POST \
-  --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/networks/${NETWORK_ID}/owls/${CAMERA_ID}/thumbnail" \
-  --header "Authorization: Bearer $NEW_TOKEN" \
-  --header "Content-Type: application/json"
+  echo "Skipping OWL thumbnail request."; \
+else \
+  curl --request POST \
+    --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/networks/${NETWORK_ID}/owls/${CAMERA_ID}/thumbnail" \
+    --header "Authorization: Bearer $NEW_TOKEN" \
+    --header "Content-Type: application/json"; \
+fi
 ```
 
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
