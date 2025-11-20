@@ -1,6 +1,6 @@
-## Get Video Thumbnail
+## Get Clip Thumbnail
 
-Retrieve the JPEG thumbnail for a video clip. The thumbnail filename is obtained from the [Get Clip Events](get-clip-events.md) API response.
+Retrieve the JPEG thumbnail for a clip. The thumbnail filename is obtained from the [Get Clip Events](get-clip-events.md) API response.
 
 `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
 
@@ -36,7 +36,7 @@ HOST=$(echo "$BLINK_TOKENS" | sed -n "s/.*host=\([^|]*\).*/\1/p") && \
 ACCOUNT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*account_id=\([^|]*\).*/\1/p") && \
 TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth/token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "User-Agent: Blinkpy" \
+  --header "User-Agent: Blink" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
   --data-urlencode "client_id=${CLIENT_ID:-android}" \

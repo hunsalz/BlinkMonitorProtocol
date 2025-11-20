@@ -13,13 +13,13 @@ Client Login to Blink Account on Blink Servers
 - **password** - Account password
 - **unique_id** - (optional) UUID generated and identifying the client.  Pass a consistent value here to avoid repeated client verification PIN requests. This format is something like NAME_00000000-0000-0000-0000-000000000000 (0s must be replaced by a Hex number)
 - **client_name** - (optional) Display name in the blink app of the client
-- **reauth** - (optional) Should be set to *true* to, if the client is already [verified](verifyPin.md). Otherwise blink keeps sending verification PINs. If you want to reauth, you must include the unique_id in the request and set reauth parameter to 'true' (string). With this call, you will receive a new token that will work for 24 hours.
+- **reauth** - (optional) Should be set to *true* to, if the client is already verified. Otherwise blink keeps sending verification PINs. If you want to reauth, you must include the unique_id in the request and set reauth parameter to 'true' (string). With this call, you will receive a new token that will work for 24 hours. (Note: The verify pin endpoint is obsolete and does not work with OAuth Bearer tokens.)
 
 ### Response
 - **account&#46;account_id** - Account Identifier 
 - **account&#46;client_id** - Client Identifier
-- **account&#46;client_verification_required** - Client verification required by Blink Servers, see [Verify Pin](verifyPin.md).
-- **auth&#46;token** - String Authentication token to be passed as `TOKEN_AUTH` header in future calls
+- **account&#46;client_verification_required** - Client verification required by Blink Servers. (Note: The verify pin endpoint is obsolete and does not work with OAuth Bearer tokens.)
+- **auth&#46;token** - String Authentication token (deprecated - was passed as `TOKEN_AUTH` header, but this method no longer works)
 - **account&#46;tier** - Tier (see notes below)
 
 ### Notes

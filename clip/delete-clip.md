@@ -1,6 +1,6 @@
-## Delete Videos
+## Delete Clips
 
-Delete one or more video clips from the account.
+Delete one or more clips from the account.
 
 `POST /api/v1/accounts/{AccountID}/media/delete`
 
@@ -38,7 +38,7 @@ HOST=$(echo "$BLINK_TOKENS" | sed -n "s/.*host=\([^|]*\).*/\1/p") && \
 ACCOUNT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*account_id=\([^|]*\).*/\1/p") && \
 TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth/token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "User-Agent: Blinkpy" \
+  --header "User-Agent: Blink" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
   --data-urlencode "client_id=${CLIENT_ID:-android}" \
@@ -59,7 +59,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 
 ```javascript
 {
-  "message": "Videos deleted successfully",
+  "message": "Clips deleted successfully",
   "code": 200,
   "deleted_count": 2
 }

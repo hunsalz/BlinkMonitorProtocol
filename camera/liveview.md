@@ -39,7 +39,7 @@ HOST=$(echo "$BLINK_TOKENS" | sed -n "s/.*host=\([^|]*\).*/\1/p") && \
 ACCOUNT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*account_id=\([^|]*\).*/\1/p") && \
 TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth/token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "User-Agent: Blinkpy" \
+  --header "User-Agent: Blink" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
   --data-urlencode "client_id=${CLIENT_ID:-android}" \

@@ -1,6 +1,6 @@
-## Get Video
+## Get Clip
 
-Download a video clip by filename. The filename is obtained from the [Get Clip Events](get-clip-events.md) API response.
+Download a clip by filename. The filename is obtained from the [Get Clip Events](get-clip-events.md) API response.
 
 `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
 
@@ -13,7 +13,7 @@ This endpoint requires OAuth 2.0 Bearer token authentication. See [Authenticatio
 ### Response
 `content-type: video/mp4`
 
-The response is a binary MP4 video file stream.
+The response is a binary MP4 clip file stream.
 
 ### Example Request
 
@@ -24,7 +24,7 @@ curl --request GET \
   --url "https://rest-{region}.immedia-semi.com/api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json" \
-  --output video.mp4
+  --output clip.mp4
 ```
 
 **Complete working example using .env file:**
@@ -36,7 +36,7 @@ HOST=$(echo "$BLINK_TOKENS" | sed -n "s/.*host=\([^|]*\).*/\1/p") && \
 ACCOUNT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*account_id=\([^|]*\).*/\1/p") && \
 TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth/token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "User-Agent: Blinkpy" \
+  --header "User-Agent: Blink" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
   --data-urlencode "client_id=${CLIENT_ID:-android}" \
@@ -46,16 +46,16 @@ CLIP_EVENTS=$(curl -s --request GET \
   --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/media/changed?since=1970-01-01T00:00:00+0000&page=1" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json") && \
-VIDEO_PATH=$(echo "$CLIP_EVENTS" | grep -o '"media":"[^"]*' | head -1 | cut -d'"' -f4) && \
-if [ -z "$VIDEO_PATH" ]; then \
-  echo "Warning: No video found in clip events."; \
+CLIP_PATH=$(echo "$CLIP_EVENTS" | grep -o '"media":"[^"]*' | head -1 | cut -d'"' -f4) && \
+if [ -z "$CLIP_PATH" ]; then \
+  echo "Warning: No clip found in clip events."; \
 else \
-  VIDEO_FILE=$(basename "$VIDEO_PATH") && \
+  CLIP_FILE=$(basename "$CLIP_PATH") && \
   curl --request GET \
-    --url "https://rest-${HOST}${VIDEO_PATH}" \
+    --url "https://rest-${HOST}${CLIP_PATH}" \
     --header "Authorization: Bearer $NEW_TOKEN" \
     --header "Content-Type: application/json" \
-    --output "$VIDEO_FILE"; \
+    --output "$CLIP_FILE"; \
 fi
 ```
 
@@ -64,7 +64,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 ### Example Response
 `200 OK`
 
-Binary MP4 video file stream.
+Binary MP4 clip file stream.
 
-**Note:** The video filename is obtained from the `media` field in the response from [Get Clip Events](get-clip-events.md). The path format is typically `/api/v2/accounts/{AccountID}/media/clip/{filename}.mp4`.
+**Note:** The clip filename is obtained from the `media` field in the response from [Get Clip Events](get-clip-events.md). The path format is typically `/api/v2/accounts/{AccountID}/media/clip/{filename}.mp4`.
 

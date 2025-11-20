@@ -1,6 +1,6 @@
-## Set Video Options
+## Set Clip Options
 
-Set video-related options for the account.
+Set clip-related options for the account.
 
 `POST /api/v1/account/video_options`
 
@@ -12,7 +12,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Request Body
-Video options object. Exact fields may vary. See example.
+Clip options object. Exact fields may vary. See example.
 
 ### Response
 A success message object or error response. See example.
@@ -41,7 +41,7 @@ HOST=$(echo "$BLINK_TOKENS" | sed -n "s/.*host=\([^|]*\).*/\1/p") && \
 ACCOUNT_ID=$(echo "$BLINK_TOKENS" | sed -n "s/.*account_id=\([^|]*\).*/\1/p") && \
 TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth/token" \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "User-Agent: Blinkpy" \
+  --header "User-Agent: Blink" \
   --data-urlencode "grant_type=refresh_token" \
   --data-urlencode "refresh_token=$REFRESH_TOKEN" \
   --data-urlencode "client_id=${CLIENT_ID:-android}" \
@@ -64,7 +64,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 
 ```javascript
 {
-  "message": "Video options updated successfully",
+  "message": "Clip options updated successfully",
   "code": 200
 }
 ```
@@ -79,5 +79,5 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** The exact request body structure and response format may vary. This endpoint is used to configure video storage and deletion settings. The `auto_delete_days` value must be within the allowed range for your account.
+**Note:** The exact request body structure and response format may vary. This endpoint is used to configure clip storage and deletion settings. The `auto_delete_days` value must be within the allowed range for your account.
 
