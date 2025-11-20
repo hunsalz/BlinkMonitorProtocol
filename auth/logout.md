@@ -4,7 +4,7 @@ Client Logout Blink Account on Blink Servers
 `POST /api/v4/account/{AccountID}/client/{clientID}/logout`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 ### Parameters
 - **AccountID** - Account ID
@@ -14,7 +14,7 @@ Client Logout Blink Account on Blink Servers
 ```sh
 curl 'https://rest-prod.immedia-semi.com/api/v4/account/1234/client/1234567/logout' \
 -X POST \
--H 'TOKEN-AUTH: {AuthToken}'
+-H 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

@@ -4,7 +4,7 @@ Retrieve Client "home screen" data.  Returns detailed information about the Acco
 `GET /api/v3/accounts/{AccountID}/homescreen`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -15,7 +15,7 @@ See example
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/api/v3/accounts/1234/homescreen \
-  --header 'token-auth: {AuthToken}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 
@@ -59,11 +59,33 @@ curl --request GET \
   ],
   "cameras": [
     {
+      "id": 193210,
+      "created_at": "2020-01-15T10:30:00+00:00",
+      "updated_at": "2025-01-19T14:20:00+00:00",
+      "name": "Camera",
+      "serial": "SERIAL123456789",
+      "fw_version": "10.72",
+      "type": "catalina",
+      "enabled": true,
+      "thumbnail": "/media/production/account/1234/network/189117/camera/193210/clip_name",
+      "status": "online",
+      "battery": "ok",
+      "usage_rate": true,
+      "network_id": 189117,
+      "issues": [],
+      "signals": {
+        "lfr": 3,
+        "wifi": 5,
+        "temp": 71,
+        "battery": 3
+      }
+    },
+    {
       "id": 1234,
       "created_at": "2016-01-03T23:15:42+00:00",
       "updated_at": "2020-08-09T13:02:14+00:00",
       "name": "Camera Name",
-      "serial": "123456789"
+      "serial": "123456789",
       "fw_version": "2.151",
       "type": "white",
       "enabled": false,

@@ -2,10 +2,10 @@
 
 Update an existing schedule
 
-`POST /api/v1/networks/{NetworkID}/programs/{ProgramID/update`
+`POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/update`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 - **content-type** - `application/json`
 
 ### Body
@@ -20,7 +20,7 @@ see example
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/api/v1/networks/1234/programs/123/update \
   --header 'content-type: application/json' \
-  --header 'token-auth: {Auth-Token}' \
+  --header 'TOKEN_AUTH: {AuthToken}' \
   --data '{"id":123,"schedule":[{"dow":["mon","tue","wed","thu","fri"],"devices":[],"time":"2020-08-09 14:45:00 +0000","action":"arm"},{"dow":["mon","tue","wed","thu","fri"],"devices":[],"time":"2016-06-02 21:00:00 +0000","action":"disarm"}],"name":"schedulename","format":"v1"}'
 ```
 

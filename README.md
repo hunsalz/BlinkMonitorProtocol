@@ -14,7 +14,7 @@ PR's welcome!
 
 * **Initial server URL** - https://rest-prod.immedia-semi.com
     * see [Login](auth/login.md) for notes on possible redirection to a locale specific server after login.
-* **Auth Token** - Authentication is done by passing a TOKEN_AUTH header.  The auth token is provided in the response to a successful login.
+* **Auth Token** - ⚠️ **Authentication Method Changed**: The REST API session token method (TOKEN_AUTH header) appears to be deprecated. Blink now uses **OAuth 2.0** authentication with `Authorization: Bearer {token}` header. See [Login](auth/login.md) for details. The REST API endpoints still work but require OAuth Bearer tokens.
 * **Account** - An account corresponds to a single set of login credentials. The Account ID is returned in a successful login response.
 * **Client** - A unique client/app to the account. A single account may have many client apps. Clients that the Blink servers believe are new will generate an out-of-band PIN OTP workflow.  The Client ID is returned in a successful login response.
 * **Network** - A single account may have many networks. A network corresponds conceptually to a Blink Synch module. An account could have multiple networks/synch modules - e.g. multiple sites/homes. Network and Synch Module information associated with an account is returned in the homescreen call.
@@ -35,18 +35,18 @@ PR's welcome!
 * [Get Account Notification Flags](system/getNotifications.md) : `GET /api/v1/accounts/{AccountID}/notifications/configuration`
 * [Set Notification Flags](system/setNotifications.md) : `POST /api/v1/accounts/{AccountID}/notifications/configuration`
 * [Get Client Options](system/options.md) : `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
-* [Set Client Options](system/updateoptions.md) : `POST /client/{ClientID}/update`
+* [Set Client Options](system/updateoptions.md) : `POST /api/v1/accounts/{AccountID}/clients/{ClientID}/update`
 
 
 ### Network
 
 * [Command Status](network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
 * [Arm System](network/arm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm`
-* [Disarm System](network/disarm.md) : `POST api/v1/accounts/{AccountID}/networks/{NetworkID}/state/disarm`
+* [Disarm System](network/disarm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/disarm`
 * [List Schedules](network/listPrograms.md) : `GET /api/v1/networks/{NetworkID}/programs`
 * [Enable Schedule](network/enableProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
-* Disable Schedule : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/disable`
-* [Update Schedule](network/updateProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID/update`
+* [Disable Schedule](network/disableProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/disable`
+* [Update Schedule](network/updateProgram.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/update`
 * ~~List Networks (obsolete): `GET /networks`~~
 * ~~List Synch Modules (obsolete) `GET /network/{NetworkID}/syncmodules`~~
 
@@ -60,8 +60,8 @@ PR's welcome!
 * [Liveview](camera/liveview.md) : `POST /api/v5/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/liveview`
 * [Record Video Clip from Camera](camera/recordClip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
 * [Snooze Camera](camera/snooze.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze`
-* Get Camera Config : `GET /network/{NetworkID}/camera/{CameraID}/config`
-* Update Camera Config : `POST /network/{NetworkID}/camera/{CameraID}/update`
+* [Get Camera Config](camera/getConfig.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
+* [Update Camera Config](camera/updateConfig.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
 * ~~Get Camera List (obsolete - replaced by HomeScreen) - `GET /network/{NetworkID}/cameras`~~
 * Get Camera Info (deprecated? - replaced by HomeScreen) - `GET /network/{NetworkID}/camera/{CameraID}`
 * Get Camera Sensor Info (deprecated? - replaced by HomeScreen) - `GET /network/{NetworkID}/camera/{CameraID}/signals`
@@ -70,10 +70,10 @@ PR's welcome!
 ### Videos
 
 * [Get Video Events](video/getVideoEvents.md) : `GET /api/v1/accounts/{AccountID}/media/changed?since={timestamp}&page={PageNumber}`
-* Get Video : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
-* Get Video Thumbnail : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
-* Set Video Options : `POST /api/v1/account/video_options`
-* Delete Videos : `POST /api/v1/accounts/{AccountID}/media/delete`
+* [Get Video](video/getVideo.md) : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
+* [Get Video Thumbnail](video/getVideoThumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
+* [Set Video Options](video/setVideoOptions.md) : `POST /api/v1/account/video_options`
+* [Delete Videos](video/deleteVideos.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
 * ~~Get Network events (obsolete replaced by Get Video Events) - `GET /events/network/{NetworkID}`~~
 * ~~Get Video Count (obsolete) - `GET /api/v2/videos/count`~~
 * ~~Get Video Info by Page (obsolete) - `GET /api/v2/videos/page/{PageNumber}`~~
@@ -86,7 +86,7 @@ PR's welcome!
 
 * [App Version Check](Misc/version.md) : `GET /api/v1/version`
 * [Get Regions](Misc/regions.md) : `GET /regions?locale={Two Character Country Locale}`
-* Upload Logs : `POST /app/logs/upload`
+* [Upload Logs](Misc/uploadLogs.md) : `POST /app/logs/upload`
 * [Account Options](Misc/accountOptions.md) : `GET /api/v1/account/options`
 * System Health (deprecated?) :  `GET /health`
 * ~~Clients (obsolete) : `GET /account/clients`~~

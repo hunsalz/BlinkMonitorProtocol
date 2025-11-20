@@ -8,7 +8,7 @@ When this call returns, it does not mean the arm request is complete,  the clien
 `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -18,7 +18,7 @@ When this call returns, it does not mean the arm request is complete,  the clien
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/api/v1/accounts/1234/networks/1234/state/arm \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 ### Example Response

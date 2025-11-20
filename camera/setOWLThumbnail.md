@@ -1,13 +1,11 @@
 ## Set Thumbnail for Owl
 
-Set the thumbail by taking a snapshot of the current view of the camera.
+Set the thumbnail by taking a snapshot of the current view of the camera.
 
-`POST /api/v1/accounts/{accountID}/networks/{NetworkID}/owls/{CameraID}/thumbnail`
-
-/network/{NetworkID}/camera/{CameraID}/thumbnail`
+`POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/owls/{CameraID}/thumbnail`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -17,11 +15,16 @@ A command object.  See example.  This call is asynchronous and is monitored by t
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/api/v1/accounts/11111/networks/22222/owls/44444/thumbnail \
-  --header 'token-auth: {Auth-Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 ### Example Response
 `200 OK`
 
 ```javascript
-{'id': 1678210511, 'network_id': 158164, 'command': 'thumbnail', 'state': 'new'}
+{
+  "id": 1678210511,
+  "network_id": 158164,
+  "command": "thumbnail",
+  "state": "new"
+}

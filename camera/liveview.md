@@ -5,7 +5,7 @@ Ask for a live video stream of the given camera
 `POST /api/v5/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/liveview`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 - **content-type** - `application/json`
 
 ### Body
@@ -20,7 +20,7 @@ A command object containing a Real Time Streaming Protocol (RTSP) URL
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/api/v5/accounts/1234/networks/1234/cameras/123456/liveview \
   --header 'content-type: application/json' \
-  --header 'token-auth: {Auth-Token}' \
+  --header 'TOKEN_AUTH: {AuthToken}' \
   --data '{"intent":"liveview","motion_event_start_time":""}'
 ```
 

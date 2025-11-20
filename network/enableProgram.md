@@ -5,7 +5,7 @@ Enable an existing schedule (programs) defined for the given Network/Blink Modul
 `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -16,7 +16,7 @@ see example
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/api/v1/networks/1234/programs/123/enable \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

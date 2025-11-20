@@ -4,7 +4,7 @@ Get client specific options.   Details unknown.
 `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -14,7 +14,7 @@ Get client specific options.   Details unknown.
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/api/v1/accounts/1234/clients/1234567/options \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

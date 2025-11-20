@@ -5,7 +5,7 @@ Record a video clip from the camera.  Is this still used in the client?
 `POST /network/{NetworkID}/camera/{CameraID}/clip`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -15,7 +15,7 @@ A command object.  See example.  This call is asynchronous and is monitored by t
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/network/1234/camera/123456/clip \
-  --header 'token-auth: {Auth-Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 ### Example Response

@@ -5,7 +5,7 @@ Verify Client with PIN provided in an email. Pass a consistent Client UUID at lo
 
 ### Headers
 - **Content-Type** - `application/json`
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 ### Parameters
 - **AccountID** - Account ID
@@ -23,7 +23,7 @@ Verify Client with PIN provided in an email. Pass a consistent Client UUID at lo
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/api/v4/account/1234/client/1234567/pin/verify \
   --header 'content-type: application/json' \
-  --header 'token-auth: {AuthToken}' \
+  --header 'TOKEN_AUTH: {AuthToken}' \
   --data '{"pin":"123456"}'
 ```
 

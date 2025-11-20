@@ -1,6 +1,8 @@
 ## Login
 Client Login to Blink Account on Blink Servers
 
+**⚠️ DEPRECATED:** This REST API login endpoint appears to be obsolete. It returns `{"message":"An app update is required"}`. Use OAuth authentication instead (see note below).
+
 `POST /api/v5/account/login`
 
 ### Headers
@@ -24,6 +26,11 @@ Client Login to Blink Account on Blink Servers
 Depending on where your Blink system is registered, the tier info appears necessary to form the localized URL of the REST endpoint for future calls. Current logic seems to be to update the REST endpoint using region.tier data in the response:
 - from `https://rest-prod.immedia-semi.com`
 - to `https://rest-{account.tier}.immedia-semi.com` Reports indicate that all regions are not implemented equally, i.e. not all endpoints are available in all regions
+
+**⚠️ IMPORTANT - Authentication Method Change:**
+- **REST API Session Tokens (TOKEN_AUTH)**: This method appears to be **deprecated/obsolete**. The login endpoint returns `{"message":"An app update is required"}`.
+- **OAuth Bearer Tokens (Recommended)**: Blink now uses OAuth 2.0 authentication. Use `https://api.oauth.blink.com/oauth/token` to obtain access tokens. See [blinkpy library](https://github.com/fronzbot/blinkpy) for implementation reference. OAuth tokens use `Authorization: Bearer {token}` header instead of `TOKEN_AUTH`.
+- **REST API Endpoints**: The REST API endpoints (like `/network/{NetworkID}/camera/{CameraID}/config`) still work, but now require OAuth Bearer tokens instead of session tokens.
 
 ### Example Request
 ```sh

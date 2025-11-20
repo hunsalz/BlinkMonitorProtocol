@@ -4,7 +4,7 @@ Some misc account specific flags
 `GET /api/v1/account/options`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -14,7 +14,7 @@ see example
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/api/v1/account/options \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

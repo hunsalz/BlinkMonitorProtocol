@@ -4,7 +4,7 @@ Update client specific options.   Details unknown.
 `POST /client/{ClientID}/update`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 ### Body
 - **notification_key** - ?
@@ -17,7 +17,7 @@ Update client specific options.   Details unknown.
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/client/1234567/update \
-  --header 'token-auth: {Auth-Token}' \
+  --header 'TOKEN_AUTH: {AuthToken}' \
   --data '{"notification_key":"aNotificationKeyString"}'
 ```
 

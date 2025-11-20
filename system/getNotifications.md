@@ -3,7 +3,7 @@
 `GET /api/v1/accounts/{AccountID}/notifications/configuration`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -14,7 +14,7 @@ Flag status for various notifications, see example
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/api/v1/accounts/1234/notifications/configuration \
-  --header 'token-auth: {Auth_TOKEN}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

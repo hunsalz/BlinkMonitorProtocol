@@ -5,7 +5,7 @@ List the schedules (programs) defined for the given Network/Blink Module
 `GET /api/v1/networks/{NetworkID}/programs`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -16,7 +16,7 @@ An array of program objects - see example
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/api/v1/networks/1234/programs \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

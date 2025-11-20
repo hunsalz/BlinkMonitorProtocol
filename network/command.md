@@ -9,7 +9,7 @@ The mobile clients poll for completion approximately once a second.
 `GET /network/{NetworkID}/command/{CommandID}`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -20,7 +20,7 @@ An array of program objects - see example
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/network/1234/command/123456789 \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 

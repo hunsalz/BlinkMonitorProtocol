@@ -7,7 +7,7 @@ Enable motion detection for the given Camera.
 `POST /network/{NetworkID}/camera/{CameraID}/enable`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -17,7 +17,7 @@ Enable motion detection for the given Camera.
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/network/1234/camera/5678/enable \
-  --header 'token-auth: {Token_Auth}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 ### Example Response

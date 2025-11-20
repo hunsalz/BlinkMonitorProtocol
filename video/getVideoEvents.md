@@ -2,10 +2,10 @@
 
 Get Media (Generally video) events since the given timestamp in the query parm.
 
-`GET /api/v1/accounts/{AccountID}/media/changed
+`GET /api/v1/accounts/{AccountID}/media/changed`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 ### Parameters
 - **since** - a timestamp to return events since.  e.g. 2020-08-03T16:50:24+0000. The official mobile client seems to use the epoch to return all available events - i.e. 1970-01-01T00:00:00+0000
@@ -19,7 +19,7 @@ Get Media (Generally video) events since the given timestamp in the query parm.
 ```sh
 curl --request GET \
   --url 'https://rest-prod.immedia-semi.com/api/v1/accounts/1234/media/changed?since=2020-07-31T09%3A58%3A14%2B0000&page=1' \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 
@@ -41,7 +41,7 @@ curl --request GET \
       "device_id": 1234567,
       "device_name": "The Device Name",
       "network_id": 1234,
-      "network_name": "The Netork Name",
+      "network_name": "The Network Name",
       "type": "video",
       "source": "pir",
       "watched": true,

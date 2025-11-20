@@ -5,7 +5,7 @@ Disable motion detection for the given Camera.
 `POST /network/{NetworkID}/camera/{CameraID}/disable`
 
 ### Headers
-- **TOKEN-AUTH** -  session auth token
+- **TOKEN_AUTH** -  session auth token
 
 
 ### Response
@@ -15,7 +15,7 @@ Disable motion detection for the given Camera.
 ```sh
 curl --request POST \
   --url https://rest-prod.immedia-semi.com/network/1836/camera/2381/disable \
-  --header 'token-auth: {Auth_Token}'
+  --header 'TOKEN_AUTH: {AuthToken}'
 ```
 
 ### Example Response
