@@ -99,11 +99,11 @@ PR's welcome!
 
 ### Videos
 
-* [Get Video Events](video/getVideoEvents.md) : `GET /api/v1/accounts/{AccountID}/media/changed?since={timestamp}&page={PageNumber}`
-* [Get Video](video/getVideo.md) : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
-* [Get Video Thumbnail](video/getVideoThumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
-* [Set Video Options](video/setVideoOptions.md) : `POST /api/v1/account/video_options`
-* [Delete Videos](video/deleteVideos.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
+* [Get Video Events](clip/get-clip-events.md) : `GET /api/v1/accounts/{AccountID}/media/changed?since={timestamp}&page={PageNumber}`
+* [Get Video](clip/get-clip.md) : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
+* [Get Video Thumbnail](clip/get-clip-thumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
+* [Set Video Options](clip/set-clip-options.md) : `POST /api/v1/account/video_options`
+* [Delete Videos](clip/delete-clip.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
 * ~~Get Network events (obsolete replaced by Get Video Events) - `GET /events/network/{NetworkID}`~~
 * ~~Get Video Count (obsolete) - `GET /api/v2/videos/count`~~
 * ~~Get Video Info by Page (obsolete) - `GET /api/v2/videos/page/{PageNumber}`~~
