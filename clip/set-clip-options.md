@@ -12,7 +12,13 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Request Body
-Clip options object. Exact fields may vary. See example.
+Clip options object containing storage and deletion settings.
+
+**Known Fields:**
+- **auto_delete_days** - (Optional) Number of days after which clips are automatically deleted. Must be within the allowed range for your account (typically 0-365 days). If not specified, clips may be retained indefinitely or follow account defaults.
+- **storage** - (Optional) Storage preference indicator. The exact meaning and values are not fully documented, but typically `1` indicates cloud storage.
+
+**Note:** Additional fields may exist but are not documented in the public API. The exact structure may vary based on account type and subscription features.
 
 ### Response
 A success message object or error response. See example.
@@ -79,5 +85,9 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** The exact request body structure and response format may vary. This endpoint is used to configure clip storage and deletion settings. The `auto_delete_days` value must be within the allowed range for your account.
+**Notes:**
+- This endpoint is used to configure clip storage and deletion settings for your account
+- The `auto_delete_days` value must be within the allowed range for your account (check your account limits)
+- The request body may accept additional fields beyond `auto_delete_days` and `storage`, but these are not documented in the public API
+- The response format is consistent (success message with code 200), but the request body structure may vary based on account features
 

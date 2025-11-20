@@ -12,7 +12,13 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Request Body
-Log data. The exact format may vary depending on the client implementation.
+Log data in either JSON or multipart/form-data format. The exact structure may vary depending on the client implementation.
+
+**Common Formats:**
+- **JSON format**: `{"logs": "log data here"}` - Simple text-based log data
+- **Multipart/form-data**: File upload format, typically used by mobile apps for binary log files
+
+**Note:** This endpoint is primarily used by the official Blink mobile apps. The exact request format and field names may vary between different client implementations.
 
 ### Response
 A success message object. See example.
@@ -72,5 +78,17 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** This endpoint is primarily used by the official Blink mobile apps for diagnostic purposes. The response includes a log entry ID, server information, and the log file path. The exact request format may vary and is not fully documented in the public API.
+**Notes:**
+- This endpoint is primarily used by the official Blink mobile apps for diagnostic and troubleshooting purposes
+- **Response structure** is consistent and includes:
+  - `id` - Log entry identifier
+  - `server` and `server_instance` - Server information where logs are stored
+  - `text` - Path to the uploaded log file
+  - `account_id` - Account identifier
+  - `created_at`, `updated_at` - Timestamps
+- **Request format** may vary:
+  - JSON format with text logs
+  - Multipart/form-data for file uploads
+  - Field names and structure may differ between client implementations
+- The exact request format is not fully documented in the public API as it's primarily an internal diagnostic tool
 

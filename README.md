@@ -20,7 +20,7 @@ PR's welcome!
 - **New Method (Current)**: OAuth 2.0 Bearer tokens via `Authorization: Bearer {token}` header
   - Tokens obtained from `https://api.oauth.blink.com/oauth/token`
   - Access tokens expire after 4 hours and must be refreshed using refresh tokens
-  - Used by the [blinkpy library](https://github.com/fronzbot/blinkpy) and is the recommended approach
+  - This is the current and recommended authentication approach
 
 **Impact:**
 - All REST API endpoints still work, but now require OAuth Bearer tokens instead of session tokens

@@ -1,5 +1,7 @@
 ## Update Client Options
-Update client-specific options for the authenticated client. The exact purpose and parameters are not fully documented in the public API.
+Update client-specific configuration options for the authenticated client. This endpoint allows you to modify client-level settings, such as notification keys for push notifications or other client-specific preferences.
+
+**Note:** The exact purpose and parameters of this endpoint are not fully documented in the public API. The `notification_key` parameter appears to be used for push notification configuration, but the exact format and usage may vary.
 
 `POST /client/{ClientID}/update`
 
@@ -11,10 +13,10 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Request Body
-- **notification_key** - Notification key string. The exact purpose and format of this field is not fully documented in the public API.
+- **notification_key** - (Required) A notification key string used for push notification configuration. This is typically a device-specific token or identifier used to send push notifications to the client. The exact format and purpose are not fully documented in the public API, but it appears to be related to push notification service registration (e.g., FCM token for Android, APNs token for iOS).
 
 ### Response
-A client object with updated information. See example.
+A success message confirming the client options were updated. The response format may vary - some responses include the full client object with updated information, while others return a simple success message.
 
 ### Example Request
 
@@ -64,4 +66,11 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** The response format may vary. Some responses may include the full client object with updated information, while others may return a simple success message.
+**Notes:**
+- **Response format variations:**
+  - **Standard response**: Success message with code `241` (most common)
+  - **Extended response**: Some responses may include the full client object with updated information
+  - The variation appears to depend on server configuration or response type, not account type
+- The `notification_key` parameter is used to register or update push notification tokens for the client
+- This endpoint is primarily used by the official Blink mobile apps for push notification configuration
+- Related endpoints: [Get Client Options](options.md) to retrieve current client settings

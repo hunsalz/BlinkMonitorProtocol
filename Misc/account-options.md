@@ -1,5 +1,5 @@
 ## Account Options
-Some misc account specific flags
+Retrieve account-specific feature flags and configuration options. This endpoint returns information about enabled features, subscription status, trial eligibility, and account limits.
 
 `GET /api/v1/account/options`
 
@@ -10,7 +10,14 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-An account options object. See example.
+An account options object containing feature flags, subscription information, and account configuration. The response includes various boolean flags and configuration values.
+
+**Response Field Categories:**
+- **Feature Flags**: Boolean flags indicating enabled features (e.g., `catalina_app_enabled`, `owl_app_enabled`, `sm2_app_enabled`)
+- **Subscription/Trial**: Trial eligibility and subscription status (e.g., `subs_eligible`, `trial_opt_in_eligible`, `trial_cancellation_enabled`)
+- **Limits**: Account-specific limits (e.g., `c2s_clip_list_limit`)
+- **Integrations**: Third-party integration status (e.g., `amazon_account_linking`, `amazon_account_linking_enabled`)
+- **Power/Storage**: Power and storage features (e.g., `power_harvest_video`)
 
 ### Example Request
 
@@ -70,4 +77,13 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** The response includes various account feature flags and configuration options. The exact fields may vary based on account type and subscription status.
+**Notes:**
+- The response includes various account feature flags and configuration options
+- **Common fields** (typically present): Feature flags, subscription status, trial eligibility
+- **Variable fields** (may vary based on):
+  - **Account type**: Free vs paid subscription accounts have different feature sets
+  - **Subscription tier**: Different subscription levels enable different features
+  - **Regional availability**: Some features may only be available in certain regions
+  - **Device ownership**: Fields like `catalina_app_enabled`, `owl_app_enabled` depend on owned device types
+  - **Trial status**: Trial-related fields (`trial_opt_in_eligible`, `trial_cancellation_enabled`) vary based on trial participation
+- The exact fields present will reflect your account's specific configuration and available features

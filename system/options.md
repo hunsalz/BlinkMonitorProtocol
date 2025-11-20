@@ -1,5 +1,7 @@
 ## Client Options
-Get client-specific options for the authenticated client. The exact purpose and structure of the options field is not fully documented in the public API.
+Retrieve client-specific configuration options for the authenticated client. This endpoint returns client-level settings that may be used for push notifications, device preferences, or other client-specific configurations.
+
+**Note:** The exact structure and purpose of the `options` field is not fully documented in the public API. The response typically contains an `options` field that may be a JSON string or empty object, depending on the client configuration.
 
 `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
 
@@ -10,7 +12,10 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-Client-specific options object. The response typically contains an `options` field that may be a JSON string or empty object. The exact structure and meaning of these options is not fully documented in the public API.
+A client options object containing client-specific configuration. The response structure is minimal and typically contains only an `options` field.
+
+**Response Fields:**
+- **options** - A JSON string or empty object string (`"{}"`) containing client-specific configuration. The structure and content of this field are not fully documented in the public API and may vary based on client type and configuration.
 
 ### Example Request
 
@@ -57,4 +62,9 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** The options field may contain a JSON string or an empty object string. The specific meaning and format of the options field is unknown and may vary.
+**Notes:**
+- The `options` field is typically an empty object string (`"{}"`) for most clients
+- When populated, the `options` field may contain client-specific configuration such as notification preferences or device settings
+- The exact structure and purpose of the options field is not fully documented in the public API
+- This endpoint is primarily used by the official Blink mobile apps for client configuration management
+- Related endpoints: [Update Client Options](update-options.md) to modify these settings

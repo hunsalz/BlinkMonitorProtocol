@@ -74,4 +74,15 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 }
 ```
 
-**Note:** The response includes various notification flags. The exact fields may vary based on account type and available features.
+**Notes:**
+- The response includes various notification flags that control which events trigger push notifications
+- **Common fields** (typically present): `motion`, `camera_offline`, `low_battery`, `sync_module_offline`, `general`
+- **Feature-specific fields** (may vary): 
+  - `doorbell` - Only present if doorbell devices are configured
+  - `cv_motion` - Only present if computer vision features are enabled
+  - `accessory_connected`, `accessory_disconnected`, `accessory_low_battery` - Only present if accessories are configured
+  - `local_storage` - Only present if local storage features are available
+- The exact fields may vary based on:
+  - Account type and subscription tier
+  - Available features and device types
+  - Regional feature availability
