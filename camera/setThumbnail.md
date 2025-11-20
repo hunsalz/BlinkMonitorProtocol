@@ -5,48 +5,19 @@ Set the thumbail by taking a snapshot of the current view of the camera.
 `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
 
 ### Headers
-- **Authorization** - `Bearer {OAuthToken}` - OAuth 2.0 access token obtained from `https://api.oauth.blink.com/oauth/token`
-- **Content-Type** - `application/json` - Required for API requests
-
+See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 
 ### Authentication
-
-This endpoint requires OAuth 2.0 Bearer token authentication. The token is obtained from Blink's OAuth server and must be refreshed periodically (access tokens expire after 4 hours).
-
-**How OAuth Bearer tokens work:**
-1. Obtain an access token from `https://api.oauth.blink.com/oauth/token` using your credentials or refresh token
-2. Include the token in the `Authorization` header as `Bearer {token}`
-3. The token authenticates your request to the REST API endpoints
+This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
 A command object.  See example.  This call is asynchronous and is monitored by the [Command Status](../network/command.md) API call using the returned Command Id.
 
 ### Example Request
 
-**Step 1: Refresh your OAuth token (if expired)**
-
-OAuth access tokens expire after 4 hours. Use your refresh token to get a new access token:
-
+**Simple example:**
 ```sh
-# Refresh OAuth token
-TOKEN_RESPONSE=$(curl -s --request POST \
-  --url "https://api.oauth.blink.com/oauth/token" \
-  --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "User-Agent: Blinkpy" \
-  --data-urlencode "grant_type=refresh_token" \
-  --data-urlencode "refresh_token={YourRefreshToken}" \
-  --data-urlencode "client_id=android" \
-  --data-urlencode "scope=client")
-
-# Extract the new access token from the response
-NEW_TOKEN=$(echo "$TOKEN_RESPONSE" | grep -o '"access_token":"[^"]*' | cut -d'"' -f4)
-```
-
-**Step 2: Make the API request with Bearer token**
-
-Use the `Authorization: Bearer` header to authenticate:
-
-```sh
+# First refresh your token (see Authentication Guide)
 curl --request POST \
   --url "https://rest-{region}.immedia-semi.com/network/{NetworkID}/camera/{CameraID}/thumbnail" \
   --header "Authorization: Bearer $NEW_TOKEN" \
@@ -80,29 +51,7 @@ curl --request POST \
   --header "Content-Type: application/json"
 ```
 
-### How Bearer Token Authentication Works
-
-**Bearer Token Format:**
-- The token is a JWT (JSON Web Token) obtained from Blink's OAuth server
-- It's included in the HTTP `Authorization` header with the format: `Authorization: Bearer {token}`
-- The `Bearer` keyword indicates OAuth 2.0 token-based authentication
-
-**Token Lifecycle:**
-1. **Initial Login**: Authenticate with username/password to get both `access_token` and `refresh_token`
-2. **Access Token**: Short-lived (4 hours), used for API requests
-3. **Refresh Token**: Long-lived, used to obtain new access tokens without re-authenticating
-4. **Token Refresh**: When access token expires, use refresh token to get a new one
-
-**Error Handling:**
-- If you receive `{"message":"Unauthorized Access","code":101}`, your access token has likely expired
-- Refresh the token using your refresh token and retry the request
-- The complete example above automatically refreshes the token before making the request
-
-**Why Bearer Tokens?**
-- OAuth 2.0 standard for secure API authentication
-- Tokens can be revoked server-side
-- No need to send credentials with each request
-- Supports token refresh without re-authentication
+See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
 
 ### Example Response
 `200 OK`
