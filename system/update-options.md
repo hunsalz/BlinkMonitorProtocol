@@ -1,5 +1,5 @@
 ## Update Client Options
-Update client specific options.   Details unknown.
+Update client-specific options for the authenticated client. The exact purpose and parameters are not fully documented in the public API.
 
 `POST /client/{ClientID}/update`
 
@@ -11,7 +11,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Request Body
-- **notification_key** - Notification key string (specific meaning unknown)
+- **notification_key** - Notification key string. The exact purpose and format of this field is not fully documented in the public API.
 
 ### Response
 A client object with updated information. See example.

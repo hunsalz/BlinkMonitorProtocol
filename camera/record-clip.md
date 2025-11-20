@@ -1,6 +1,6 @@
 ## Record Video Clip from Camera
 
-Record a video clip from the camera.  Is this still used in the client?
+Record a video clip from the camera. This endpoint triggers the camera to record a clip on demand.
 
 `POST /network/{NetworkID}/camera/{CameraID}/clip`
 

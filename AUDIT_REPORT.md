@@ -84,7 +84,7 @@ Most files follow this order:
 #### Total Files: 34 markdown files
 
 **By Category:**
-- `auth/`: 2 files (1 deprecated)
+- `auth/`: 0 files (removed - all endpoints obsolete)
 - `camera/`: 9 files
 - `clip/`: 5 files
 - `network/`: 7 files

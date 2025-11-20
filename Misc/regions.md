@@ -1,5 +1,5 @@
 ## Get Regions
-Get valid region info for a locale. Authentication is not required.  Specific use for results is unknown.
+Get valid region info for a locale. Authentication is not required. This endpoint is typically used during account registration or setup to determine available regions and their DNS endpoints. The response includes region information that may be used to select the appropriate regional server.
 
 `GET /regions`
 

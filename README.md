@@ -49,7 +49,6 @@ PR's welcome!
 **⚠️ Important**: All endpoints require OAuth 2.0 Bearer token authentication. See [Authentication Guide](AUTHENTICATION.md) for complete documentation.
 
 * [Authentication Guide](AUTHENTICATION.md) - **Start here** - Complete guide to OAuth Bearer token authentication
-* [Logout](auth/logout.md) : `POST /api/v4/account/{AccountID}/client/{clientID}/logout`
 
 
 ### System

@@ -1,5 +1,5 @@
 ## Client Options
-Get client specific options.   Details unknown.
+Get client-specific options for the authenticated client. The exact purpose and structure of the options field is not fully documented in the public API.
 
 `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
 
@@ -10,7 +10,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-Client-specific options object. The specific meaning of the options field is unknown.
+Client-specific options object. The response typically contains an `options` field that may be a JSON string or empty object. The exact structure and meaning of these options is not fully documented in the public API.
 
 ### Example Request
 
