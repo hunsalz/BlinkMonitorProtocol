@@ -12,7 +12,10 @@ This endpoint requires OAuth 2.0 Bearer token authentication. See [Authenticatio
 
 
 ### Response
-A command object.  See example.  This call is asynchronous and is monitored by the [Command Status](../network/command.md) API call using the returned Command Id.
+A command object or error response. See example. This call is asynchronous and is monitored by the [Command Status](../network/command.md) API call using the returned Command Id.
+
+**Error Responses:**
+- `{"message":"System is busy, please wait","error":null,"code":307}` - The system is currently busy processing another request. Wait a few seconds and retry the request.
 
 ### Example Request
 
@@ -55,6 +58,8 @@ curl --request POST \
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.
 
 ### Example Response
+
+**Success Response:**
 `200 OK`
 
 ```javascript
@@ -96,3 +101,15 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
   "account_id": 1234,
   "sync_module_id": 123456
 }
+```
+
+**Error Response:**
+`307 Temporary Redirect` (or `200 OK` with error in body)
+
+```javascript
+{
+  "message": "System is busy, please wait",
+  "error": null,
+  "code": 307
+}
+```

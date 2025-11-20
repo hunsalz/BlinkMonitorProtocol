@@ -16,7 +16,7 @@ This endpoint requires OAuth 2.0 Bearer token authentication. See [Authenticatio
 - **motion_event_start_time** - empty string = immediate?
 
 ### Response
-A command object containing a Real Time Streaming Protocol (RTSP) URL 
+A command object containing a Real Time Streaming Protocol (RTSP) URL and connection details. The `server` field contains the RTSP URL, and `liveview_token` is required for authentication when connecting to the stream. 
 
 ### Example Request
 
@@ -68,13 +68,19 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
   "command_id": 1234567890,
   "join_available": true,
   "join_state": "available",
-  "server": "rtsps://<URL>",
-  "duration": 300,
+  "server": "immis://<IP>:<PORT>/<PATH>?client_id=<ID>",
+  "duration": null,
+  "extended_duration": 5400,
   "continue_interval": 30,
   "continue_warning": 10,
+  "polling_interval": 15,
   "submit_logs": true,
   "new_command": true,
   "media_id": null,
-  "options": {}
+  "options": {},
+  "liveview_token": "<TOKEN>"
 }
+```
+
+**Note:** The `server` field contains an RTSP URL (using `immis://` protocol) that can be used to stream live video from the camera. The `liveview_token` is required for authentication when connecting to the stream.
 
