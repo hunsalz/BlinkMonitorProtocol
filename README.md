@@ -14,7 +14,6 @@ The Client API is a straightforward REST API using JSON and HTTPS.
   - [Network](#network)
   - [Cameras](#cameras)
   - [Clips](#clips)
-  - [Misc](#misc)
 - [Contributing](#contributing)
 
 ## Getting Started
@@ -51,10 +50,15 @@ All endpoint documentation includes complete working examples with authenticatio
 ### System
 
 * [HomeScreen](system/homescreen.md) : `GET /api/v3/accounts/{AccountID}/homescreen`
+* [Get Account Info](system/get-account-info.md) : `GET /api/v1/accounts/{AccountID}/info`
 * [Get Account Notification Flags](system/get-notifications.md) : `GET /api/v1/accounts/{AccountID}/notifications/configuration`
 * [Set Notification Flags](system/set-notifications.md) : `POST /api/v1/accounts/{AccountID}/notifications/configuration`
 * [Get Client Options](system/options.md) : `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
 * [Set Client Options](system/update-options.md) : `POST /client/{ClientID}/update`
+* [Get Account Options](system/get-account-options.md) : `GET /api/v1/account/options`
+* [App Version Check](system/version.md) : `GET /api/v1/version`
+* [Get Regions](system/regions.md) : `GET /regions?locale={Two Character Country Locale}`
+* [Upload Logs](system/upload-logs.md) : `POST /app/logs/upload`
 
 
 ### Network
@@ -88,14 +92,6 @@ All endpoint documentation includes complete working examples with authenticatio
 * [Get Clip Thumbnail](clip/get-clip-thumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
 * [Set Clip Options](clip/set-clip-options.md) : `POST /api/v1/account/video_options`
 * [Delete Clips](clip/delete-clip.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
-
-
-### Misc
-
-* [App Version Check](misc/version.md) : `GET /api/v1/version`
-* [Get Regions](misc/regions.md) : `GET /regions?locale={Two Character Country Locale}`
-* [Upload Logs](misc/upload-logs.md) : `POST /app/logs/upload`
-* [Account Options](misc/account-options.md) : `GET /api/v1/account/options`
 
 ## Contributing
 
