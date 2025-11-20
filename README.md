@@ -4,52 +4,49 @@ Unofficial documentation for the Client API of the Blink Wire-Free HD Home Monit
 
 The Client API is a straightforward REST API using JSON and HTTPS.
 
-PR's welcome!
+## Table of Contents
 
-## Lessons Learned
+- [Getting Started](#getting-started)
+- [Overview](#overview)
+- [Authentication](#authentication)
+- [API Endpoints](#api-endpoints)
+  - [System](#system)
+  - [Network](#network)
+  - [Cameras](#cameras)
+  - [Clips](#clips)
+  - [Misc](#misc)
+- [Contributing](#contributing)
 
-### Authentication Method Change (2024-2025)
+## Getting Started
 
-**Key Finding**: Blink has migrated from REST API session tokens to OAuth 2.0 Bearer token authentication.
+1. **Set up authentication**: See the [Authentication Guide](AUTHENTICATION.md) for complete OAuth Bearer token setup instructions
+2. **Configure environment**: Copy [`.env.template`](.env.template) to `.env` and fill in your credentials
+3. **Make your first API call**: Start with the [HomeScreen](system/homescreen.md) endpoint to get your account information
 
-**What Changed:**
-- **Old Method (Deprecated)**: REST API session tokens via `TOKEN_AUTH` header from `/api/v5/account/login`
-  - This endpoint now returns `{"message":"An app update is required"}` indicating it's obsolete
-  - Session tokens are no longer issued or accepted
-  
-- **New Method (Current)**: OAuth 2.0 Bearer tokens via `Authorization: Bearer {token}` header
-  - Tokens obtained from `https://api.oauth.blink.com/oauth/token`
-  - Access tokens expire after 4 hours and must be refreshed using refresh tokens
-  - This is the current and recommended authentication approach
-
-**Impact:**
-- All REST API endpoints still work, but now require OAuth Bearer tokens instead of session tokens
-- The authentication flow is different but the endpoint URLs and request/response formats remain the same
-- Token management is more robust with automatic refresh capabilities
-
-**For Developers:**
-- See [Authentication Guide](AUTHENTICATION.md) for complete OAuth Bearer token implementation details
-- Use `.env.template` as a reference for required environment variables
-- All endpoint documentation has been updated to reflect the new authentication method
-
+**Prerequisites:**
+- Blink account credentials
+- `curl` command-line tool (or any HTTP client)
+- Shell environment (bash/zsh)
 
 ## Overview
 
 * **Initial server URL** - https://rest-prod.immedia-semi.com
-* **Authentication** - ⚠️ **Important**: Blink uses **OAuth 2.0 Bearer token** authentication. See [Authentication Guide](AUTHENTICATION.md) for complete details on how to authenticate and use OAuth Bearer tokens.
 * **Account** - An account corresponds to a single set of login credentials. The Account ID is returned in the homescreen call.
 * **Client** - A unique client/app to the account. A single account may have many client apps. The Client ID is obtained from your OAuth token response.
 * **Network** - A single account may have many networks. A network corresponds conceptually to a Blink Synch module. An account could have multiple networks/synch modules - e.g. multiple sites/homes. Network and Synch Module information associated with an account is returned in the homescreen call.
 * **Camera** - A network (synch module) may have one or more cameras. Camera information is returned in the homescreen call.
 * **Command** - Some operations reach out from the Blink Servers to your local Blink module.  These operations are asynchronous and return a Command ID to be polled for completion via the Command Status call.
 
+## Authentication
 
-### Authentication
+**⚠️ Important**: All endpoints require OAuth 2.0 Bearer token authentication.
 
-**⚠️ Important**: All endpoints require OAuth 2.0 Bearer token authentication. See [Authentication Guide](AUTHENTICATION.md) for complete documentation.
+* **[Authentication Guide](AUTHENTICATION.md)** - **Start here** - Complete guide to OAuth Bearer token authentication, including initial login, token refresh, and troubleshooting
+* **[`.env.template`](.env.template)** - Template for environment variables configuration
 
-* [Authentication Guide](AUTHENTICATION.md) - **Start here** - Complete guide to OAuth Bearer token authentication
+All endpoint documentation includes complete working examples with authentication.
 
+## API Endpoints
 
 ### System
 
@@ -99,3 +96,14 @@ PR's welcome!
 * [Get Regions](misc/regions.md) : `GET /regions?locale={Two Character Country Locale}`
 * [Upload Logs](misc/upload-logs.md) : `POST /app/logs/upload`
 * [Account Options](misc/account-options.md) : `GET /api/v1/account/options`
+
+## Contributing
+
+PR's welcome! This is an unofficial documentation project maintained by the community.
+
+When contributing:
+- Follow the existing documentation structure and format
+- Include complete working examples with authentication
+- Test all examples before submitting
+- Use kebab-case for file names
+- Reference the [Authentication Guide](AUTHENTICATION.md) for authentication patterns
