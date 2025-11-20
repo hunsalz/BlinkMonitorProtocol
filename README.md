@@ -114,10 +114,10 @@ PR's welcome!
 
 ### Misc
 
-* [App Version Check](Misc/version.md) : `GET /api/v1/version`
-* [Get Regions](Misc/regions.md) : `GET /regions?locale={Two Character Country Locale}`
-* [Upload Logs](Misc/uploadLogs.md) : `POST /app/logs/upload`
-* [Account Options](Misc/accountOptions.md) : `GET /api/v1/account/options`
+* [App Version Check](misc/version.md) : `GET /api/v1/version`
+* [Get Regions](misc/regions.md) : `GET /regions?locale={Two Character Country Locale}`
+* [Upload Logs](misc/upload-logs.md) : `POST /app/logs/upload`
+* [Account Options](misc/account-options.md) : `GET /api/v1/account/options`
 * System Health (deprecated?) :  `GET /health`
 * ~~Clients (obsolete) : `GET /account/clients`~~
 

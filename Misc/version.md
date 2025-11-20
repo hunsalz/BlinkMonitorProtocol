@@ -29,3 +29,13 @@ curl --request GET \
   "update_required": false
 }
 ```
+
+**Note:** If an outdated build string is provided, the response may indicate an update is required:
+```javascript
+{
+  "message": "An app update is required",
+  "code": 105,
+  "update_available": true,
+  "update_required": true
+}
+```
