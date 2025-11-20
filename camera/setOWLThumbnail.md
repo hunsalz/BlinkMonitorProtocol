@@ -26,6 +26,9 @@ curl --request POST \
 ```
 
 **Complete working example using .env file:**
+
+**Note:** This example assumes you have at least one OWL camera configured. If you get "Not Found" errors, check that your account has OWL cameras by inspecting the homescreen response.
+
 ```sh
 source .env && \
 REFRESH_TOKEN=$(echo "$BLINK_TOKENS" | sed -n "s/.*refresh_token=\([^|]*\).*/\1/p") && \
@@ -46,6 +49,11 @@ HOMESCREEN=$(curl -s --request GET \
   --header "Content-Type: application/json") && \
 NETWORK_ID=$(echo "$HOMESCREEN" | grep -o '"networks":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
 CAMERA_ID=$(echo "$HOMESCREEN" | grep -o '"owls":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
+if [ -z "$CAMERA_ID" ]; then \
+  echo "Error: No OWL cameras found. Your homescreen shows: $(echo "$HOMESCREEN" | grep -o '"owls":\[.*\]' | head -c 100)"; \
+  echo "This endpoint requires at least one OWL camera to be configured in your account."; \
+  exit 1; \
+fi && \
 curl --request POST \
   --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/networks/${NETWORK_ID}/owls/${CAMERA_ID}/thumbnail" \
   --header "Authorization: Bearer $NEW_TOKEN" \
