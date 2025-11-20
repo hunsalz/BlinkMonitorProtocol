@@ -86,12 +86,12 @@ PR's welcome!
 * [Enable Motion Detection](camera/enable.md) : `POST /network/{NetworkID}/camera/{CameraID}/enable`
 * [Disable Motion Detection](camera/disable.md) : `POST /network/{NetworkID}/camera/{CameraID}/disable`
 * [Get Current Thumbnail](camera/getThumbnail.md) : `GET /media/production/account/{AccountID}/network/{NetworkID}/camera/{CameraID}/{JPEG_File_Name}.jpg`
-* [Create New Thumbnail](camera/setThumbnail.md) : `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
+* [Create New Thumbnail](camera/set-thumbnail.md) : `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
 * [Liveview](camera/liveview.md) : `POST /api/v5/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/liveview`
-* [Record Video Clip from Camera](camera/recordClip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
+* [Record Video Clip from Camera](camera/record-clip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
 * [Snooze Camera](camera/snooze.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze`
-* [Get Camera Config](camera/getConfig.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
-* [Update Camera Config](camera/updateConfig.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
+* [Get Camera Config](camera/get-config.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
+* [Update Camera Config](camera/update-config.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
 * ~~Get Camera List (obsolete - replaced by HomeScreen) - `GET /network/{NetworkID}/cameras`~~
 * Get Camera Info (deprecated? - replaced by HomeScreen) - `GET /network/{NetworkID}/camera/{CameraID}`
 * Get Camera Sensor Info (deprecated? - replaced by HomeScreen) - `GET /network/{NetworkID}/camera/{CameraID}/signals`
