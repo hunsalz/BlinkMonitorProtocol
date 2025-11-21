@@ -122,6 +122,7 @@ Endpoints that use unversioned paths (no `/api/v1/`, `/api/v2/`, etc.). These re
 #### Network-Scoped (`/network/{NetworkID}/...`)
 
 * [Network Info](unversioned/network/get-network.md) : `GET /network/{NetworkID}`
+* [Update Network](unversioned/network/update-network.md) : `POST /network/{NetworkID}/update`
 * [Command Status](unversioned/network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
 * [Get Network Sync Modules](unversioned/network/get-syncmodules.md) : `GET /network/{NetworkID}/syncmodules`
 * [Enable Motion Detection](unversioned/network/camera/enable.md) : `POST /network/{NetworkID}/camera/{CameraID}/enable`
