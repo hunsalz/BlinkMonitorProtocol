@@ -71,6 +71,10 @@ Endpoints are organized by API version and resource path.
 * [Snooze Camera](v1/accounts/snooze.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze`
 * [Get Clip Events](v1/accounts/get-clip-events.md) : `GET /api/v1/accounts/{AccountID}/media/changed?since={timestamp}&page={PageNumber}`
 * [Delete Clips](v1/accounts/delete-clip.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
+* [Request Local Storage Manifest](v1/accounts/request-local-storage-manifest.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/sync_modules/{SyncID}/local_storage/manifest/request`
+* [Get Local Storage Manifest](v1/accounts/get-local-storage-manifest.md) : `GET /api/v1/accounts/{AccountID}/networks/{NetworkID}/sync_modules/{SyncID}/local_storage/manifest/request/{ManifestRequestID}`
+* [Request Local Storage Clip Upload](v1/accounts/request-local-storage-clip-upload.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/sync_modules/{SyncID}/local_storage/manifest/{ManifestID}/clip/request/{ClipID}`
+* [Download Local Storage Clip](v1/accounts/download-local-storage-clip.md) : `GET /api/v1/accounts/{AccountID}/networks/{NetworkID}/sync_modules/{SyncID}/local_storage/manifest/{ManifestID}/clip/request/{ClipID}`
 
 #### Networks (`/api/v1/networks/...`)
 
@@ -103,6 +107,10 @@ Endpoints are organized by API version and resource path.
 * [Get Clip](v2/accounts/get-clip.md) : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
 * [Get Clip Thumbnail](v2/accounts/get-clip-thumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
 
+#### Videos (`/api/v2/videos/...`)
+
+* [Get Video Count](v2/accounts/get-video-count.md) : `GET /api/v2/videos/count`
+
 ### API v3
 
 #### Accounts (`/api/v3/accounts/...`)
@@ -126,6 +134,7 @@ Endpoints that use unversioned paths (no `/api/v1/`, `/api/v2/`, etc.). These re
 #### Network-Scoped (`/network/{NetworkID}/...`)
 
 * [Network Info](unversioned/network/get-network.md) : `GET /network/{NetworkID}`
+* [List Networks](unversioned/network/list-networks.md) : `GET /networks`
 * [Update Network](unversioned/network/update-network.md) : `POST /network/{NetworkID}/update`
 * [Command Status](unversioned/network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
 * [Get Network Sync Modules](unversioned/network/get-syncmodules.md) : `GET /network/{NetworkID}/syncmodules`
@@ -144,6 +153,10 @@ Endpoints that use unversioned paths (no `/api/v1/`, `/api/v2/`, etc.). These re
 #### Application-Level (`/app/...`)
 
 * [Upload Logs](unversioned/app/upload-logs.md) : `POST /app/logs/upload`
+
+#### User-Scoped (`/user`)
+
+* [Get User Information](unversioned/user/get-user.md) : `GET /user`
 
 #### Public Endpoints (No Authentication)
 
