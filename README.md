@@ -10,17 +10,19 @@ The Client API is a straightforward REST API using JSON and HTTPS.
 - [Overview](#overview)
 - [Authentication](#authentication)
 - [API Endpoints](#api-endpoints)
-  - [System](#system)
-  - [Network](#network)
-  - [Cameras](#cameras)
-  - [Clips](#clips)
+  - [API v1](#api-v1)
+  - [API v2](#api-v2)
+  - [API v3](#api-v3)
+  - [API v5](#api-v5)
+  - [Unversioned Endpoints](#unversioned-endpoints)
+- [Version Compatibility & Evolution](#version-compatibility--evolution)
 - [Contributing](#contributing)
 
 ## Getting Started
 
 1. **Set up authentication**: See the [Authentication Guide](AUTHENTICATION.md) for complete OAuth Bearer token setup instructions
 2. **Configure environment**: Copy [`.env.template`](.env.template) to `.env` and fill in your credentials
-3. **Make your first API call**: Start with the [HomeScreen](system/homescreen.md) endpoint to get your account information
+3. **Make your first API call**: Start with the [HomeScreen](v3/accounts/homescreen.md) endpoint to get your account information
 
 **Prerequisites:**
 - Blink account credentials
@@ -47,51 +49,129 @@ All endpoint documentation includes complete working examples with authenticatio
 
 ## API Endpoints
 
-### System
+Endpoints are organized by API version and resource path.
 
-* [HomeScreen](system/homescreen.md) : `GET /api/v3/accounts/{AccountID}/homescreen`
-* [Get Account Info](system/get-account-info.md) : `GET /api/v1/accounts/{AccountID}/info`
-* [Get Account Notification Flags](system/get-notifications.md) : `GET /api/v1/accounts/{AccountID}/notifications/configuration`
-* [Set Notification Flags](system/set-notifications.md) : `POST /api/v1/accounts/{AccountID}/notifications/configuration`
-* [Get Client Options](system/options.md) : `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
-* [Set Client Options](system/update-options.md) : `POST /client/{ClientID}/update`
-* [Get Account Options](system/get-account-options.md) : `GET /api/v1/account/options`
-* [App Version Check](system/version.md) : `GET /api/v1/version`
-* [Get Regions](system/regions.md) : `GET /regions?locale={Two Character Country Locale}`
-* [Upload Logs](system/upload-logs.md) : `POST /app/logs/upload`
+**📚 Version Compatibility & Evolution:**
+- [Version Response Variations](plan/VERSION_RESPONSE_VARIATIONS.md) - Detailed comparison of response differences between API versions
+- [Version Compatibility Report](plan/COMPATIBILITY_REPORT.md) - Complete compatibility testing results across all versions
+- **API Evolution:** The API has evolved over time with different path structures. Unversioned endpoints (`/network/...`, `/client/...`) represent an earlier design that continues to be supported alongside the versioned structure (`/api/v1/...`, `/api/v2/...`, etc.). See individual endpoint documentation for evolution notes.
 
+### API v1
 
-### Network
+#### Accounts (`/api/v1/accounts/...`)
 
-* [Command Status](network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
-* [Arm System](network/arm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm`
-* [Disarm System](network/disarm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/disarm`
-* [List Schedules](network/list-programs.md) : `GET /api/v1/networks/{NetworkID}/programs`
-* [Enable Schedule](network/enable-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
-* [Disable Schedule](network/disable-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/disable`
-* [Update Schedule](network/update-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/update`
+* [Get Account Info](v1/accounts/get-account-info.md) : `GET /api/v1/accounts/{AccountID}/info`
+* [Get Account Notification Flags](v1/accounts/get-notifications.md) : `GET /api/v1/accounts/{AccountID}/notifications/configuration`
+* [Set Notification Flags](v1/accounts/set-notifications.md) : `POST /api/v1/accounts/{AccountID}/notifications/configuration`
+* [Get Client Options](v1/accounts/get-client-options.md) : `GET /api/v1/accounts/{AccountID}/clients/{ClientID}/options`
+* [Arm System](v1/accounts/arm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/arm`
+* [Disarm System](v1/accounts/disarm.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/state/disarm`
+* [Set OWL Thumbnail](v1/accounts/set-owl-thumbnail.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/owls/{CameraID}/thumbnail`
+* [Snooze Camera](v1/accounts/snooze.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze`
+* [Get Clip Events](v1/accounts/get-clip-events.md) : `GET /api/v1/accounts/{AccountID}/media/changed?since={timestamp}&page={PageNumber}`
+* [Delete Clips](v1/accounts/delete-clip.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
 
+#### Networks (`/api/v1/networks/...`)
 
-### Cameras
+* [List Schedules](v1/networks/list-programs.md) : `GET /api/v1/networks/{NetworkID}/programs`
+* [Enable Schedule](v1/networks/enable-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/enable`
+* [Disable Schedule](v1/networks/disable-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/disable`
+* [Update Schedule](v1/networks/update-program.md) : `POST /api/v1/networks/{NetworkID}/programs/{ProgramID}/update`
 
-* [Enable Motion Detection](camera/enable.md) : `POST /network/{NetworkID}/camera/{CameraID}/enable`
-* [Disable Motion Detection](camera/disable.md) : `POST /network/{NetworkID}/camera/{CameraID}/disable`
-* [Create New Thumbnail](camera/set-thumbnail.md) : `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
-* [Set OWL Thumbnail](camera/set-owl-thumbnail.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/owls/{CameraID}/thumbnail`
-* [Liveview](camera/liveview.md) : `POST /api/v5/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/liveview`
-* [Record Video Clip from Camera](camera/record-clip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
-* [Snooze Camera](camera/snooze.md) : `POST /api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze`
-* [Get Camera Config](camera/get-config.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
-* [Update Camera Config](camera/update-config.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
+#### Account (`/api/v1/account/...`)
 
+* [Get Account Options](v1/account/get-account-options.md) : `GET /api/v1/account/options`
+* [Set Clip Options](v1/account/set-clip-options.md) : `POST /api/v1/account/video_options`
 
-### Clips
+#### Version (`/api/v1/version`)
 
-* [Get Clip Events](clip/get-clip-events.md) : `GET /api/v1/accounts/{AccountID}/media/changed?since={timestamp}&page={PageNumber}`
-* [Get Clip](clip/get-clip.md) : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
-* [Get Clip Thumbnail](clip/get-clip-thumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
-* [Set Clip Options](clip/set-clip-options.md) : `POST /api/v1/account/video_options`
-* [Delete Clips](clip/delete-clip.md) : `POST /api/v1/accounts/{AccountID}/media/delete`
+* [App Version Check](v1/version/version.md) : `GET /api/v1/version`
+
+### API v2
+
+#### Accounts (`/api/v2/accounts/...`)
+
+* [Get Clip](v2/accounts/get-clip.md) : `GET /api/v2/accounts/{AccountID}/media/clip/{mp4_Filename}`
+* [Get Clip Thumbnail](v2/accounts/get-clip-thumbnail.md) : `GET /api/v2/accounts/{AccountID}/media/thumb/{jpg_filename}`
+
+### API v3
+
+#### Accounts (`/api/v3/accounts/...`)
+
+* [HomeScreen](v3/accounts/homescreen.md) : `GET /api/v3/accounts/{AccountID}/homescreen`
+
+### API v5
+
+#### Accounts (`/api/v5/accounts/...`)
+
+* [Liveview](v5/accounts/liveview.md) : `POST /api/v5/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/liveview`
+
+### Unversioned Endpoints
+
+Endpoints that use unversioned paths (no `/api/v1/`, `/api/v2/`, etc.). These represent a different path structure that evolved alongside the versioned API.
+
+#### Network-Scoped (`/network/{NetworkID}/...`)
+
+* [Command Status](unversioned/network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
+* [Enable Motion Detection](unversioned/network/camera/enable.md) : `POST /network/{NetworkID}/camera/{CameraID}/enable`
+* [Disable Motion Detection](unversioned/network/camera/disable.md) : `POST /network/{NetworkID}/camera/{CameraID}/disable`
+* [Create New Thumbnail](unversioned/network/camera/set-thumbnail.md) : `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
+* [Record Video Clip from Camera](unversioned/network/camera/record-clip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
+* [Get Camera Config](unversioned/network/camera/get-config.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
+* [Update Camera Config](unversioned/network/camera/update-config.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
+
+#### Client-Scoped (`/client/{ClientID}/...`)
+
+* [Set Client Options](unversioned/client/update-options.md) : `POST /client/{ClientID}/update`
+
+#### Application-Level (`/app/...`)
+
+* [Upload Logs](unversioned/app/upload-logs.md) : `POST /app/logs/upload`
+
+#### Public Endpoints (No Authentication)
+
+* [Get Regions](unversioned/public/regions.md) : `GET /regions?locale={Two Character Country Locale}`
+
+## Version Compatibility & Evolution
+
+### Version Compatibility
+
+The Blink API has evolved over time, and endpoints may be available in multiple versions with varying response structures:
+
+- **Backward Compatible Endpoints:**
+  - Account Info: Works with v1 and v2 (v2 adds additional fields)
+  - Homescreen: Works with v3 and v4 (v4 adds additional fields)
+
+- **Version-Specific Endpoints:**
+  - Most endpoints are specific to their documented version
+  - Unversioned endpoints work across all versions
+
+See [Version Compatibility Report](plan/COMPATIBILITY_REPORT.md) for complete testing results.
+
+### Response Variations
+
+When an endpoint is available in multiple versions, the response structure may differ:
+
+- **Account Info (v1 vs v2):** v2 adds phone, email, Ring integration fields
+- **Homescreen (v3 vs v4):** v4 adds access object and enhanced camera fields
+
+See [Version Response Variations](plan/VERSION_RESPONSE_VARIATIONS.md) for detailed field-by-field comparisons.
+
+### API Evolution
+
+The API uses two path structure patterns that evolved alongside each other:
+
+1. **Versioned Structure** (`/api/v1/...`, `/api/v2/...`, etc.)
+   - Explicit versioning in the path
+   - Account-scoped operations
+   - Modern design pattern
+
+2. **Unversioned Structure** (`/network/...`, `/client/...`, `/app/...`)
+   - No version prefix
+   - Resource-scoped operations
+   - Earlier design pattern, still fully supported
+
+Both structures are actively supported. Unversioned endpoints are not deprecated - they represent an alternative API design that continues to work. Some operations may only be available in one structure (e.g., OWL camera thumbnails are versioned, regular camera thumbnails are unversioned).
 
 ## Contributing
 
