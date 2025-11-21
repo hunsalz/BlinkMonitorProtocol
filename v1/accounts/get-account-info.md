@@ -39,7 +39,7 @@ An account info object containing account identification, region information, ti
 curl --request GET \
   --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/info" \
   --header "Authorization: Bearer $NEW_TOKEN" \
-  --header "Content-Type: application/json"
+  --header "Content-Type: application/json" | jq
 ```
 
 **Complete working example using .env file:**
@@ -57,10 +57,10 @@ TOKEN_RESPONSE=$(curl -s --request POST --url "https://api.oauth.blink.com/oauth
   --data-urlencode "client_id=${CLIENT_ID:-android}" \
   --data-urlencode "scope=client") && \
 NEW_TOKEN=$(echo "$TOKEN_RESPONSE" | grep -o '"access_token":"[^"]*' | cut -d'"' -f4) && \
-curl --request GET \
+curl -s --request GET \
   --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/info" \
   --header "Authorization: Bearer $NEW_TOKEN" \
-  --header "Content-Type: application/json"
+  --header "Content-Type: application/json" | jq
 ```
 
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.

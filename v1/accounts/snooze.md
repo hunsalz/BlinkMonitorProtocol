@@ -31,7 +31,7 @@ curl --request POST \
   --url "https://rest-{region}.immedia-semi.com/api/v1/accounts/{AccountID}/networks/{NetworkID}/cameras/{CameraID}/snooze" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json" \
-  --data '{"snooze_time": 240}'
+  --data '{"snooze_time": 240}' | jq
 ```
 
 **Complete working example using .env file:**
@@ -55,11 +55,11 @@ HOMESCREEN=$(curl -s --request GET \
   --header "Content-Type: application/json") && \
 NETWORK_ID=$(echo "$HOMESCREEN" | grep -o '"networks":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
 CAMERA_ID=$(echo "$HOMESCREEN" | grep -o '"cameras":\[{"id":[0-9]*' | grep -o '[0-9]*$' | head -1) && \
-curl --request POST \
+curl -s --request POST \
   --url "https://rest-${HOST}/api/v1/accounts/${ACCOUNT_ID}/networks/${NETWORK_ID}/cameras/${CAMERA_ID}/snooze" \
   --header "Authorization: Bearer $NEW_TOKEN" \
   --header "Content-Type: application/json" \
-  --data '{"snooze_time": 240}'
+  --data '{"snooze_time": 240}' | jq
 ```
 
 See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication information and token management.

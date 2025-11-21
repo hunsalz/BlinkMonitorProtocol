@@ -27,6 +27,7 @@ The Client API is a straightforward REST API using JSON and HTTPS.
 **Prerequisites:**
 - Blink account credentials
 - `curl` command-line tool (or any HTTP client)
+- `jq` command-line tool (for pretty-printing JSON responses) - [Installation guide](https://stedolan.github.io/jq/download/)
 - Shell environment (bash/zsh)
 
 ## Overview

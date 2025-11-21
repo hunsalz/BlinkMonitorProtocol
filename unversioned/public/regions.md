@@ -13,7 +13,7 @@ see example
 ### Example Request
 ```sh
 curl --request GET \
-  --url 'https://rest-prod.immedia-semi.com/regions?locale=US'
+  --url 'https://rest-prod.immedia-semi.com/regions?locale=US' | jq
 ```
 
 

@@ -14,7 +14,7 @@ see example
 ```sh
 curl --request GET \
   --url https://rest-prod.immedia-semi.com/api/v1/version \
-  --header 'app-build: IOS_8528'
+  --header 'app-build: IOS_8528' | jq
 ```
 
 
