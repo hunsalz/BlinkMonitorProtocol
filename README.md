@@ -116,7 +116,7 @@ Endpoints that use unversioned paths (no `/api/v1/`, `/api/v2/`, etc.). These re
 * [Enable Motion Detection](unversioned/network/camera/enable.md) : `POST /network/{NetworkID}/camera/{CameraID}/enable`
 * [Disable Motion Detection](unversioned/network/camera/disable.md) : `POST /network/{NetworkID}/camera/{CameraID}/disable`
 * [Create New Thumbnail](unversioned/network/camera/set-thumbnail.md) : `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
-* [Record Video Clip from Camera](unversioned/network/camera/record-clip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
+* [Record Clip from Camera](unversioned/network/camera/record-clip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
 * [Get Camera Config](unversioned/network/camera/get-config.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
 * [Update Camera Config](unversioned/network/camera/update-config.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
 

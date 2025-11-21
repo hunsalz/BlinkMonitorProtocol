@@ -14,10 +14,10 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-- A command object or error response. See example. This call is asynchronous and is monitored by the [Command Status](command.md) API call using the returned Command Id.
+- A command object or error response. See example. This call is asynchronous and is monitored by the [Command Status](../../unversioned/network/command.md) API call using the returned Command Id.
 
 **Error Responses:**
-- `{"message":"No Cameras Enabled for Motion","code":304}` - At least one camera must have motion detection enabled before the system can be armed. Use [Enable Motion Detection](../camera/enable.md) first.
+- `{"message":"No Cameras Enabled for Motion","code":304}` - At least one camera must have motion detection enabled before the system can be armed. Use [Enable Motion Detection](../../unversioned/network/camera/enable.md) first.
 
 ### Example Request
 

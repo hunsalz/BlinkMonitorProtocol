@@ -13,7 +13,7 @@ See [Authentication Guide](../../AUTHENTICATION.md) for required headers.
 This endpoint requires OAuth 2.0 Bearer token authentication. See [Authentication Guide](../../AUTHENTICATION.md) for details.
 
 ### Response
-A command object.  See example.  This call is asynchronous and is monitored by the [Command Status](../network/command.md) API call using the returned Command Id.
+A command object.  See example.  This call is asynchronous and is monitored by the [Command Status](../command.md) API call using the returned Command Id.
 
 ### Example Request
 

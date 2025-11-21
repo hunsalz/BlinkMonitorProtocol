@@ -1,6 +1,6 @@
-## Record Video Clip from Camera
+## Record Clip from Camera
 
-Record a video clip from the camera. This endpoint triggers the camera to record a clip on demand.
+Record a clip from the camera. This endpoint triggers the camera to record a clip on demand.
 
 `POST /network/{NetworkID}/camera/{CameraID}/clip`
 
@@ -12,7 +12,7 @@ This endpoint requires OAuth 2.0 Bearer token authentication. See [Authenticatio
 
 
 ### Response
-A command object or error response. See example. This call is asynchronous and is monitored by the [Command Status](../network/command.md) API call using the returned Command Id.
+A command object or error response. See example. This call is asynchronous and is monitored by the [Command Status](../command.md) API call using the returned Command Id.
 
 **Error Responses:**
 - `{"message":"System is busy, please wait","error":null,"code":307}` - The system is currently busy processing another request. Wait a few seconds and retry the request.
