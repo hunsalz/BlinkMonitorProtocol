@@ -84,6 +84,14 @@ Endpoints are organized by API version and resource path.
 * [Get Account Options](v1/account/get-account-options.md) : `GET /api/v1/account/options`
 * [Set Clip Options](v1/account/set-clip-options.md) : `POST /api/v1/account/video_options`
 
+#### Users (`/api/v1/users/...`)
+
+* [Get User Tier Info](v1/users/get-tier-info.md) : `GET /api/v1/users/tier_info`
+
+#### Camera (`/api/v1/camera/...`)
+
+* [Get Camera Usage](v1/camera/get-usage.md) : `GET /api/v1/camera/usage`
+
 #### Version (`/api/v1/version`)
 
 * [App Version Check](v1/version/version.md) : `GET /api/v1/version`
@@ -113,12 +121,15 @@ Endpoints that use unversioned paths (no `/api/v1/`, `/api/v2/`, etc.). These re
 
 #### Network-Scoped (`/network/{NetworkID}/...`)
 
+* [Network Info](unversioned/network/get-network.md) : `GET /network/{NetworkID}`
 * [Command Status](unversioned/network/command.md) : `GET /network/{NetworkID}/command/{CommandID}`
+* [Get Network Sync Modules](unversioned/network/get-syncmodules.md) : `GET /network/{NetworkID}/syncmodules`
 * [Enable Motion Detection](unversioned/network/camera/enable.md) : `POST /network/{NetworkID}/camera/{CameraID}/enable`
 * [Disable Motion Detection](unversioned/network/camera/disable.md) : `POST /network/{NetworkID}/camera/{CameraID}/disable`
 * [Create New Thumbnail](unversioned/network/camera/set-thumbnail.md) : `POST /network/{NetworkID}/camera/{CameraID}/thumbnail`
 * [Record Clip from Camera](unversioned/network/camera/record-clip.md) : `POST /network/{NetworkID}/camera/{CameraID}/clip`
 * [Get Camera Config](unversioned/network/camera/get-config.md) : `GET /network/{NetworkID}/camera/{CameraID}/config`
+* [Get Camera Signals](unversioned/network/camera/get-signals.md) : `GET /network/{NetworkID}/camera/{CameraID}/signals`
 * [Update Camera Config](unversioned/network/camera/update-config.md) : `POST /network/{NetworkID}/camera/{CameraID}/update`
 
 #### Client-Scoped (`/client/{ClientID}/...`)
