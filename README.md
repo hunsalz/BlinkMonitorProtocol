@@ -109,6 +109,10 @@ Endpoints are organized by API version and resource path.
 
 * [HomeScreen](v3/accounts/homescreen.md) : `GET /api/v3/accounts/{AccountID}/homescreen`
 
+#### Media (`/api/v3/media/...`)
+
+* [Get Camera Thumbnail](v3/media/get-camera-thumbnail.md) : `GET /api/v3/media/accounts/{AccountID}/networks/{NetworkID}/{CameraType}/{CameraID}/thumbnail/thumbnail.jpg`
+
 ### API v5
 
 #### Accounts (`/api/v5/accounts/...`)
