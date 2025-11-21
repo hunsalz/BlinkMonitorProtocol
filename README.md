@@ -141,7 +141,6 @@ The Blink API has evolved over time, and endpoints may be available in multiple 
 
 - **Backward Compatible Endpoints:**
   - Account Info: Works with v1 and v2 (v2 adds additional fields)
-  - Homescreen: Works with v3 and v4 (v4 adds additional fields)
 
 - **Version-Specific Endpoints:**
   - Most endpoints are specific to their documented version
@@ -154,7 +153,6 @@ See [Version Compatibility Report](plan/COMPATIBILITY_REPORT.md) for complete te
 When an endpoint is available in multiple versions, the response structure may differ:
 
 - **Account Info (v1 vs v2):** v2 adds phone, email, Ring integration fields
-- **Homescreen (v3 vs v4):** v4 adds access object and enhanced camera fields
 
 See [Version Response Variations](plan/VERSION_RESPONSE_VARIATIONS.md) for detailed field-by-field comparisons.
 

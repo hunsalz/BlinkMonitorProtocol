@@ -1,8 +1,6 @@
 ## Home Screen
 Retrieve Client "home screen" data.  Returns detailed information about the Account including Network, Synch Module, and Camera Info.
 
-**⚠️ Version Compatibility:** This endpoint is backward compatible with v4. The v4 version (`/api/v4/accounts/{AccountID}/homescreen`) returns additional fields (access object, enhanced camera objects with clip_length, network_type, thumbnail_timestamp, vo9_compatible). See [Version Response Variations](../../plan/VERSION_RESPONSE_VARIATIONS.md) for details.
-
 `GET /api/v3/accounts/{AccountID}/homescreen`
 
 ### Headers
@@ -186,8 +184,6 @@ See [Authentication Guide](../../AUTHENTICATION.md) for detailed authentication 
 
 **Notes:**
 - This endpoint provides comprehensive account, network, sync module, camera, and device information
-- **Version Compatibility:** This endpoint also works with `/api/v4/accounts/{AccountID}/homescreen` which returns additional fields. See [Version Compatibility Report](../../plan/COMPATIBILITY_REPORT.md) for testing details.
 
 **See also:**
-- [Version Response Variations](../../plan/VERSION_RESPONSE_VARIATIONS.md) - Detailed comparison of v3 vs v4 response differences
 - [Version Compatibility Report](../../plan/COMPATIBILITY_REPORT.md) - Complete compatibility testing results
